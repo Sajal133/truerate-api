@@ -1,5 +1,5 @@
 /**
- * Truth Gap Analyser - Bookmarklet
+ * TrueRate.ai - Bookmarklet
  * Analyzes reviews on any webpage for authenticity
  * 
  * How to use:
@@ -10,7 +10,7 @@
 
 (function () {
   // Configuration
-  const API_URL = 'http://localhost:8000';
+  const API_URL = 'https://web-production-ecdd.up.railway.app';
   const OVERLAY_ID = 'truth-gap-overlay';
 
   // Remove existing overlay if present
@@ -255,7 +255,7 @@
       }
     </style>
     <div class="tg-header">
-      <div class="tg-title">🔍 Truth Gap Analyser</div>
+      <div class="tg-title">🔍 TrueRate.ai</div>
       <button class="tg-close" onclick="document.getElementById('${OVERLAY_ID}').remove()">×</button>
     </div>
     <div class="tg-content">

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Truth Gap Analyser - Bookmarklet</title>
+  <title>TrueRate.ai - Bookmarklet</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -18,12 +19,12 @@
       color: #fff;
       padding: 40px 20px;
     }
-    
+
     .container {
       max-width: 800px;
       margin: 0 auto;
     }
-    
+
     h1 {
       font-size: 2.5rem;
       text-align: center;
@@ -33,22 +34,22 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .subtitle {
       text-align: center;
       color: #a0aec0;
       margin-bottom: 40px;
       font-size: 1.1rem;
     }
-    
+
     .card {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 16px;
       padding: 32px;
       margin-bottom: 24px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .card h2 {
       font-size: 1.5rem;
       margin-bottom: 16px;
@@ -56,7 +57,7 @@
       align-items: center;
       gap: 12px;
     }
-    
+
     .step-number {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       width: 32px;
@@ -68,7 +69,7 @@
       font-weight: bold;
       font-size: 14px;
     }
-    
+
     .bookmarklet-link {
       display: inline-block;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -82,25 +83,25 @@
       transition: transform 0.2s, box-shadow 0.2s;
       margin: 16px 0;
     }
-    
+
     .bookmarklet-link:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
     }
-    
+
     .bookmarklet-link:active {
       cursor: grabbing;
     }
-    
+
     .instructions {
       color: #cbd5e0;
       line-height: 1.8;
     }
-    
+
     .instructions li {
       margin-bottom: 8px;
     }
-    
+
     .note {
       background: rgba(102, 126, 234, 0.1);
       border-left: 4px solid #667eea;
@@ -110,96 +111,154 @@
       font-size: 14px;
       color: #a0aec0;
     }
-    
+
     .supported-sites {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 16px;
     }
-    
+
     .site-badge {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       padding: 8px 16px;
       border-radius: 20px;
       font-size: 14px;
       color: #e2e8f0;
     }
-    
+
     .demo-gif {
       width: 100%;
       border-radius: 12px;
       margin-top: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .footer {
       text-align: center;
       margin-top: 40px;
       color: #718096;
       font-size: 14px;
     }
-    
+
     .footer a {
       color: #667eea;
       text-decoration: none;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>🔍 Truth Gap Analyser</h1>
+    <h1>🔍 TrueRate.ai</h1>
     <p class="subtitle">Analyze reviews on ANY website for authenticity</p>
-    
+
     <div class="card">
       <h2><span class="step-number">1</span> Drag to Bookmarks Bar</h2>
       <p class="instructions">Drag this button to your bookmarks bar:</p>
-      
-      <a class="bookmarklet-link" href="javascript:(function(){const e='http://localhost:8000',t='truth-gap-overlay';document.getElementById(t)?.remove();const n=document.createElement('div');n.id=t,n.innerHTML=`<style>#${t}{position:fixed;top:20px;right:20px;width:380px;max-height:80vh;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);z-index:999999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff;overflow:hidden}#${t} .tg-header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:16px 20px;display:flex;justify-content:space-between;align-items:center}#${t} .tg-title{font-size:18px;font-weight:700}#${t} .tg-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:18px}#${t} .tg-content{padding:20px;max-height:60vh;overflow-y:auto}#${t} .tg-status{text-align:center;padding:40px 20px;color:#a0aec0}#${t} .tg-spinner{width:40px;height:40px;border:3px solid #4a5568;border-top-color:#667eea;border-radius:50%;animation:tg-spin 1s linear infinite;margin:0 auto 16px}@keyframes tg-spin{to{transform:rotate(360deg)}}</style><div class='tg-header'><div class='tg-title'>🔍 Truth Gap Analyser</div><button class='tg-close' onclick=\"document.getElementById('${t}').remove()\">×</button></div><div class='tg-content'><div class='tg-status'><div class='tg-spinner'></div><div>Analyzing reviews...</div></div></div>`,document.body.appendChild(n);const o=['[data-hook=\"review-body\"]','.review-text-content','.comment__09f24__D0cxf','.raw__09f24__T4Ezm','.biGQs._P.pZUbB.KxBGd','.MyEned','.wiI7pd','[data-service-review-text-typography]','[itemprop=\"reviewBody\"]','[class*=\"review-text\"]','[class*=\"review-body\"]','[class*=\"comment-text\"]','.review p'];let r=[];for(const e of o)try{document.querySelectorAll(e).forEach(e=>{const t=e.innerText?.trim();t&&t.length>20&&t.length<5e3&&!r.some(e=>e.text===t)&&r.push({text:t,stars:3})})}catch{}const a=window.getSelection()?.toString()?.trim();a&&a.length>20&&r.unshift({text:a,stars:3}),r=r.slice(0,30);const s=async()=>{if(0===r.length)return void(n.querySelector('.tg-content').innerHTML='<div style=\"text-align:center;padding:40px;color:#a0aec0\"><div style=\"font-size:48px;margin-bottom:16px\">📭</div><div>No reviews found. Try selecting text.</div></div>');const t=[];for(const n of r.slice(0,15))try{const o=await fetch(`${e}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({review_text:n.text,star_rating:n.stars})});if(o.ok){const e=await o.json();t.push({...n,...e})}}catch{}if(0===t.length)return void(n.querySelector('.tg-content').innerHTML='<div style=\"text-align:center;padding:40px;color:#f56565\"><div style=\"font-size:48px;margin-bottom:16px\">❌</div><div>API Error</div><div style=\"font-size:13px;color:#718096;margin-top:8px\">Make sure API runs at '+e+'</div></div>');const o=t.reduce((e,t)=>e+t.stars,0)/t.length,a=t.reduce((e,t)=>e+(t.weighted_rating||t.stars),0)/t.length,s=o-a,i=s>.5?'#f56565':s<-.5?'#48bb78':'#fbbf24',c=t.filter(e=>'human'===e.credibility_label).length,l=t.filter(e=>'bot'===e.credibility_label).length;n.querySelector('.tg-content').innerHTML=`<div style='background:linear-gradient(135deg,#2d3748 0%,#1a202c 100%);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px'><div style='font-size:14px;color:#a0aec0;text-transform:uppercase'>Truth Gap</div><div style='font-size:48px;font-weight:800;color:${i}'>${s>=0?'+':''}${s.toFixed(2)} ⭐</div><div style='font-size:13px;color:#718096'>Displayed: ${o.toFixed(1)}⭐ → True: ${a.toFixed(1)}⭐</div></div><div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px'><div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center'><div style='font-size:24px;font-weight:700;color:#48bb78'>${c}</div><div style='font-size:11px;color:#718096'>Genuine</div></div><div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center'><div style='font-size:24px;font-weight:700;color:#f56565'>${l}</div><div style='font-size:11px;color:#718096'>Suspicious</div></div><div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center'><div style='font-size:24px;font-weight:700'>${t.length}</div><div style='font-size:11px;color:#718096'>Analyzed</div></div></div><div style='font-size:14px;font-weight:600;margin-bottom:12px'>Sample Reviews</div>${t.slice(0,3).map(e=>`<div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;margin-bottom:8px;border-left:3px solid ${'bot'===e.credibility_label?'#f56565':'#48bb78'}'><div style='display:flex;justify-content:space-between;margin-bottom:8px'><span style='color:#fbbf24'>${'⭐'.repeat(e.stars)}</span><span style='font-size:10px;padding:2px 8px;border-radius:12px;background:${'bot'===e.credibility_label?'#f56565':'#48bb78'};color:#fff'>${e.credibility_label}</span></div><div style='font-size:13px;color:#cbd5e0'>${e.text.substring(0,120)}...</div></div>`).join('')}`};s()})();">🔍 Analyze Reviews</a>
-      
-      <div class="note">
-        <strong>💡 Tip:</strong> If you don't see your bookmarks bar, press <code>Cmd+Shift+B</code> (Mac) or <code>Ctrl+Shift+B</code> (Windows) to show it.
+
+      <a class="bookmarklet-link"
+        href="javascript:(function(){const e='http://localhost:8000',t='truth-gap-overlay';document.getElementById(t)?.remove();const n=document.createElement('div');n.id=t,n.innerHTML=`<style>#${t}{position:fixed;top:20px;right:20px;width:380px;max-height:80vh;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);z-index:999999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff;overflow:hidden}#${t} .tg-header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:16px 20px;display:flex;justify-content:space-between;align-items:center}#${t} .tg-title{font-size:18px;font-weight:700}#${t} .tg-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:18px}#${t} .tg-content{padding:20px;max-height:60vh;overflow-y:auto}#${t} .tg-status{text-align:center;padding:40px 20px;color:#a0aec0}#${t} .tg-spinner{width:40px;height:40px;border:3px solid #4a5568;border-top-color:#667eea;border-radius:50%;animation:tg-spin 1s linear infinite;margin:0 auto 16px}@keyframes tg-spin{to{transform:rotate(360deg)}}</style><div class='tg-header'><div class='tg-title'>🔍 Truth Gap Analyser</div><button class='tg-close' onclick=\"
+        document.getElementById('${t}').remove()\">×</button>
+    </div>
+    <div class='tg-content'>
+      <div class='tg-status'>
+        <div class='tg-spinner'></div>
+        <div>Analyzing reviews...</div>
       </div>
-    </div>
-    
-    <div class="card">
-      <h2><span class="step-number">2</span> Use It Anywhere</h2>
-      <ol class="instructions">
-        <li>Go to any website with reviews (Amazon, Yelp, TripAdvisor, etc.)</li>
-        <li>Click the "🔍 Analyze Reviews" bookmark</li>
-        <li>See the Truth Gap analysis in a floating panel</li>
-        <li>Optional: Select specific text before clicking to analyze just that text</li>
-      </ol>
-    </div>
-    
-    <div class="card">
-      <h2>✨ Supported Websites</h2>
-      <p class="instructions">Works on any website with reviews! Automatically detects review content on:</p>
-      <div class="supported-sites">
-        <span class="site-badge">🛒 Amazon</span>
-        <span class="site-badge">🍽️ Yelp</span>
-        <span class="site-badge">✈️ TripAdvisor</span>
-        <span class="site-badge">⭐ Trustpilot</span>
-        <span class="site-badge">🏢 G2</span>
-        <span class="site-badge">🗺️ Google Maps</span>
-        <span class="site-badge">🎬 IMDB</span>
-        <span class="site-badge">📱 App Store</span>
-        <span class="site-badge">➕ Any review site!</span>
-      </div>
-    </div>
-    
-    <div class="card">
-      <h2>⚙️ Requirements</h2>
-      <ol class="instructions">
-        <li>The Truth Gap API must be running locally at <code>http://localhost:8000</code></li>
-        <li>Start the API with: <code>cd api && uvicorn main:app --reload --port 8000</code></li>
-      </ol>
-    </div>
-    
-    <div class="footer">
-      <p>Built with ❤️ for authentic reviews</p>
-      <p><a href="http://localhost:3030">Open Full Dashboard</a></p>
+    </div>`,document.body.appendChild(n);const
+    o=['[data-hook=\"review-body\"]','.review-text-content','.comment__09f24__D0cxf','.raw__09f24__T4Ezm','.biGQs._P.pZUbB.KxBGd','.MyEned','.wiI7pd','[data-service-review-text-typography]','[itemprop=\"reviewBody\"]','[class*=\"review-text\"]','[class*=\"review-body\"]','[class*=\"comment-text\"]','.review
+    p'];let r=[];for(const e of o)try{document.querySelectorAll(e).forEach(e=>{const
+    t=e.innerText?.trim();t&&t.length>20&&t.length<5e3&&!r.some(e=>e.text===t)&&r.push({text:t,stars:3})})}catch{}const
+      a=window.getSelection()?.toString()?.trim();a&&a.length>20&&r.unshift({text:a,stars:3}),r=r.slice(0,30);const
+      s=async()=>{if(0===r.length)return void(n.querySelector('.tg-content').innerHTML='<div
+        style=\"text-align:center;padding:40px;color:#a0aec0\">
+        <div style=\"font-size:48px;margin-bottom:16px\">📭</div>
+        <div>No reviews found. Try selecting text.</div>
+      </div>');const t=[];for(const n of r.slice(0,15))try{const o=await
+      fetch(`${e}/analyze`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({review_text:n.text,star_rating:n.stars})});if(o.ok){const
+      e=await o.json();t.push({...n,...e})}}catch{}if(0===t.length)return
+      void(n.querySelector('.tg-content').innerHTML='<div style=\"text-align:center;padding:40px;color:#f56565\">
+        <div style=\"font-size:48px;margin-bottom:16px\">❌</div>
+        <div>API Error</div>
+        <div style=\"font-size:13px;color:#718096;margin-top:8px\">Make sure API runs at '+e+'</div>
+      </div>');const
+      o=t.reduce((e,t)=>e+t.stars,0)/t.length,a=t.reduce((e,t)=>e+(t.weighted_rating||t.stars),0)/t.length,s=o-a,i=s>.5?'#f56565':s<-.5?'#48bb78':'#fbbf24',c=t.filter(e=>'human'===e.credibility_label).length,l=t.filter(e=>'bot'===e.credibility_label).length;n.querySelector('.tg-content').innerHTML=`
+        <div
+          style='background:linear-gradient(135deg,#2d3748 0%,#1a202c 100%);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px'>
+          <div style='font-size:14px;color:#a0aec0;text-transform:uppercase'>Truth Gap</div>
+          <div style='font-size:48px;font-weight:800;color:${i}'>${s>=0?'+':''}${s.toFixed(2)} ⭐</div>
+          <div style='font-size:13px;color:#718096'>Displayed: ${o.toFixed(1)}⭐ → True: ${a.toFixed(1)}⭐</div>
+        </div>
+        <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px'>
+          <div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center'>
+            <div style='font-size:24px;font-weight:700;color:#48bb78'>${c}</div>
+            <div style='font-size:11px;color:#718096'>Genuine</div>
+          </div>
+          <div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center'>
+            <div style='font-size:24px;font-weight:700;color:#f56565'>${l}</div>
+            <div style='font-size:11px;color:#718096'>Suspicious</div>
+          </div>
+          <div style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center'>
+            <div style='font-size:24px;font-weight:700'>${t.length}</div>
+            <div style='font-size:11px;color:#718096'>Analyzed</div>
+          </div>
+        </div>
+        <div style='font-size:14px;font-weight:600;margin-bottom:12px'>Sample Reviews</div>${t.slice(0,3).map(e=>`<div
+          style='background:rgba(255,255,255,.05);border-radius:8px;padding:12px;margin-bottom:8px;border-left:3px solid ${'
+          bot'===e.credibility_label?'#f56565':'#48bb78'}'>
+          <div style='display:flex;justify-content:space-between;margin-bottom:8px'><span
+              style='color:#fbbf24'>${'⭐'.repeat(e.stars)}</span><span
+              style='font-size:10px;padding:2px 8px;border-radius:12px;background:${'
+              bot'===e.credibility_label?'#f56565':'#48bb78'};color:#fff'>${e.credibility_label}</span></div>
+          <div style='font-size:13px;color:#cbd5e0'>${e.text.substring(0,120)}...</div>
+        </div>`).join('')}`};s()})();">🔍 Analyze Reviews</a>
+
+        <div class="note">
+          <strong>💡 Tip:</strong> If you don't see your bookmarks bar, press <code>Cmd+Shift+B</code> (Mac) or
+          <code>Ctrl+Shift+B</code> (Windows) to show it.
+        </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="step-number">2</span> Use It Anywhere</h2>
+    <ol class="instructions">
+      <li>Go to any website with reviews (Amazon, Yelp, TripAdvisor, etc.)</li>
+      <li>Click the "🔍 Analyze Reviews" bookmark</li>
+      <li>See the Truth Gap analysis in a floating panel</li>
+      <li>Optional: Select specific text before clicking to analyze just that text</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>✨ Supported Websites</h2>
+    <p class="instructions">Works on any website with reviews! Automatically detects review content on:</p>
+    <div class="supported-sites">
+      <span class="site-badge">🛒 Amazon</span>
+      <span class="site-badge">🍽️ Yelp</span>
+      <span class="site-badge">✈️ TripAdvisor</span>
+      <span class="site-badge">⭐ Trustpilot</span>
+      <span class="site-badge">🏢 G2</span>
+      <span class="site-badge">🗺️ Google Maps</span>
+      <span class="site-badge">🎬 IMDB</span>
+      <span class="site-badge">📱 App Store</span>
+      <span class="site-badge">➕ Any review site!</span>
     </div>
   </div>
+
+  <div class="card">
+    <h2>⚙️ Requirements</h2>
+    <ol class="instructions">
+      <li>The Truth Gap API must be running locally at <code>http://localhost:8000</code></li>
+      <li>Start the API with: <code>cd api && uvicorn main:app --reload --port 8000</code></li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    <p>Built with ❤️ for authentic reviews</p>
+    <p><a href="http://localhost:3030">Open Full Dashboard</a></p>
+  </div>
+  </div>
 </body>
+
 </html>

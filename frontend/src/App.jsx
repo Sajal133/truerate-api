@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-const API_URL = 'http://localhost:8000'
+const API_URL = 'https://web-production-ecdd.up.railway.app'
 
 function App() {
   // Tab state

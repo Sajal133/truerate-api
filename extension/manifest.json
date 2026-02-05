@@ -10,6 +10,7 @@
     ],
     "host_permissions": [
         "http://localhost:8000/*",
+        "https://web-production-ecdd.up.railway.app/*",
         "https://*.amazon.com/*",
         "https://*.amazon.in/*",
         "https://*.yelp.com/*",
