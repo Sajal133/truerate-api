@@ -23,6 +23,14 @@ from typing import Dict, List, Tuple
 import re
 import json
 
+# Import Supabase weight functions
+try:
+    from feedback_db import update_weight_adjustment, get_all_weight_adjustments, SUPABASE_AVAILABLE
+except ImportError:
+    SUPABASE_AVAILABLE = False
+    update_weight_adjustment = None
+    get_all_weight_adjustments = None
+
 
 class AdaptiveLearner:
     """
@@ -125,6 +133,10 @@ class AdaptiveLearner:
                 
                 self.pattern_weights[key] = new_value
                 adjustments[key] = update
+                
+                # Persist to Supabase immediately
+                if SUPABASE_AVAILABLE and update_weight_adjustment:
+                    update_weight_adjustment(key, update)
         
         return adjustments
     
@@ -176,21 +188,44 @@ class AdaptiveLearner:
             return "human"
     
     def save_weights(self, filepath: str = None) -> None:
-        """Save learned weights to file."""
+        """
+        Save learned weights.
+        Weights are already persisted to Supabase in update_from_feedback.
+        This method saves a local backup for fallback.
+        """
         if filepath is None:
             filepath = Path(__file__).parent.parent / "api" / "learned_weights.json"
         
         data = {
             "pattern_weights": self.pattern_weights,
             "class_thresholds": self.class_thresholds,
-            "learning_rate": self.learning_rate
+            "learning_rate": self.learning_rate,
+            "source": "local_backup"
         }
         
-        with open(filepath, 'w') as f:
-            json.dump(data, f, indent=2)
+        try:
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            print(f"Warning: Could not save local backup: {e}")
     
     def load_weights(self, filepath: str = None) -> bool:
-        """Load learned weights from file."""
+        """
+        Load learned weights from Supabase (primary) or local file (fallback).
+        Supabase weights are aggregated from ALL users' feedback.
+        """
+        # Try Supabase first (contains all users' feedback)
+        if SUPABASE_AVAILABLE and get_all_weight_adjustments:
+            try:
+                cloud_weights = get_all_weight_adjustments()
+                if cloud_weights:
+                    self.pattern_weights = cloud_weights
+                    print(f"Loaded {len(cloud_weights)} weights from Supabase (multi-user)")
+                    return True
+            except Exception as e:
+                print(f"Could not load from Supabase: {e}")
+        
+        # Fallback to local file
         if filepath is None:
             filepath = Path(__file__).parent.parent / "api" / "learned_weights.json"
         
@@ -200,8 +235,10 @@ class AdaptiveLearner:
                 self.pattern_weights = data.get("pattern_weights", {})
                 self.class_thresholds = data.get("class_thresholds", self.class_thresholds)
                 self.learning_rate = data.get("learning_rate", self.learning_rate)
+            print(f"Loaded weights from local file (fallback)")
             return True
         except FileNotFoundError:
+            print("No weights found - starting fresh")
             return False
         except Exception as e:
             print(f"Error loading weights: {e}")
