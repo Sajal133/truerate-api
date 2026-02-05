@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: truerate-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python -c "import nltk; nltk.download('vader_lexicon'); nltk.download('punkt'); nltk.download('averaged_perceptron_tagger')"
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4
+      - key: SUPABASE_URL
+        value: https://siithpbnuknngkqeyxui.supabase.co
+      - key: SUPABASE_KEY
+        sync: false

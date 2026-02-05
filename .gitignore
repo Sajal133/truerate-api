@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+ENV/
+env/
+.env
+*.egg-info/
+dist/
+build/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific - NOT needed for deployment
+*.db
+*.sqlite
+*.sqlite3
+models/
+data/
+.tmp/
+directives/
+
+# Temporary and test files
+files.zip
+ratio_test_results.json
+ratio-comparison.jsx
+trust-gap-analyzer.jsx
+
+# Node (frontend - optional, not needed for API)
+node_modules/
+.next/
+out/
+
+# Local development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# ML models (too large for GitHub)
+*.h5
+*.model
+*.safetensors
+*.pt
+*.pth

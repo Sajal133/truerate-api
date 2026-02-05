@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueRate.ai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🔍</div>
+                <span class="logo-text">TrueRate.ai</span>
+            </div>
+            <span class="header-badge">v1.0</span>
+        </header>
+
+        <div class="content">
+            <!-- Initial State -->
+            <div id="initial-state" class="state-container">
+                <div class="hero-icon">🎯</div>
+                <div class="hero-text">Analyze Reviews</div>
+                <div class="hint-text">Detect fake reviews and discover the real rating behind any product</div>
+                <button id="analyze-btn" class="btn-primary">
+                    <span class="btn-icon">✨</span>
+                    Start Analysis
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="state-container hidden">
+                <div class="spinner"></div>
+                <div id="loading-text" class="loading-text">Extracting reviews...</div>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="state-container hidden">
+                <div class="hero-icon error">❌</div>
+                <div class="hero-text">Analysis Failed</div>
+                <div id="error-message" class="error-message">Something went wrong</div>
+                <button id="retry-btn" class="btn-primary">
+                    <span class="btn-icon">🔄</span>
+                    Try Again
+                </button>
+            </div>
+
+            <!-- No Reviews State -->
+            <div id="no-reviews-state" class="state-container hidden">
+                <div class="hero-icon">📭</div>
+                <div class="hero-text">No Reviews Found</div>
+                <div id="no-reviews-hint" class="hint-text">
+                    Navigate to a product page with customer reviews
+                </div>
+                <button id="see-reviews-btn" class="btn-primary hidden">
+                    <span class="btn-icon">📄</span>
+                    See All Reviews
+                </button>
+            </div>
+
+            <!-- Results State -->
+            <div id="results-state" class="hidden">
+                <!-- Page Hint -->
+                <div id="page-hint" class="page-hint hidden"></div>
+
+                <!-- Truth Gap Card -->
+                <div class="truth-gap-card">
+                    <div class="gap-label">Truth Gap</div>
+                    <div id="gap-value" class="gap-value">+0.00 ⭐</div>
+                    <div id="gap-subtitle" class="gap-subtitle">
+                        <span>Displayed: 4.5⭐</span>
+                        <span class="arrow">→</span>
+                        <span>True: 4.5⭐</span>
+                    </div>
+                    <!-- Overall Rating Feedback -->
+                    <div id="overall-feedback" class="overall-feedback-row">
+                        <span class="feedback-prompt">Was this analysis helpful?</span>
+                        <button id="overall-like-btn" class="overall-feedback-btn like" title="Helpful">👍</button>
+                        <button id="overall-dislike-btn" class="overall-feedback-btn dislike"
+                            title="Not helpful">👎</button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card genuine">
+                        <div id="genuine-count" class="stat-value">0</div>
+                        <div class="stat-label">Genuine</div>
+                    </div>
+                    <div class="stat-card suspicious">
+                        <div id="suspicious-count" class="stat-value">0</div>
+                        <div class="stat-label">Suspicious</div>
+                    </div>
+                    <div class="stat-card low-effort">
+                        <div id="low-effort-count" class="stat-value">0</div>
+                        <div class="stat-label">Low Effort</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="total-count" class="stat-value">0</div>
+                        <div class="stat-label">Analyzed</div>
+                    </div>
+                </div>
+
+                <!-- Review Count -->
+                <div id="review-count" class="review-count">Analyzed 0 reviews</div>
+
+                <!-- Sample Reviews -->
+                <div class="reviews-section">
+                    <div class="section-title">Sample Reviews</div>
+                    <div id="reviews-list"></div>
+                </div>
+
+                <!-- Load More (Hidden by default) -->
+                <button id="load-more-btn" class="btn-secondary hidden">
+                    <span class="btn-icon">📥</span>
+                    Load More Reviews
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-text">Powered by AI • Protecting Consumers</div>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

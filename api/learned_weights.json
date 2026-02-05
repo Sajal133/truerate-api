@@ -1,0 +1,17 @@
+{
+  "pattern_weights": {
+    "overall_analysis:very_short": 0.015,
+    "overall_analysis:stars_3": 0.015,
+    "overall_analysis:has_numbers": 0.015,
+    "human:short": 0.03,
+    "human:stars_1": 0.015,
+    "human:personal_experience": 0.015,
+    "human:stars_5": 0.015,
+    "human:has_numbers": 0.015
+  },
+  "class_thresholds": {
+    "bot": 0.3,
+    "low_effort": 0.6
+  },
+  "learning_rate": 0.05
+}

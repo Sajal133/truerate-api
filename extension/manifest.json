@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "name": "TrueRate.ai",
+    "version": "1.0.0",
+    "description": "Analyze online reviews for authenticity. Detect fake reviews, calculate the 'Truth Gap' between displayed and true ratings.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "http://localhost:8000/*",
+        "https://*.amazon.com/*",
+        "https://*.amazon.in/*",
+        "https://*.yelp.com/*",
+        "https://*.tripadvisor.com/*",
+        "https://*.trustpilot.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        },
+        "default_title": "TrueRate.ai"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.amazon.com/*",
+                "https://*.amazon.in/*",
+                "https://*.yelp.com/*",
+                "https://*.tripadvisor.com/*",
+                "https://*.trustpilot.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}
